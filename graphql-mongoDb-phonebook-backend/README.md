@@ -107,14 +107,13 @@ After installing morgan configure the middleware by using `app.use` command in t
 
 ## Exercises 3.9.-3.11. Connect backend to front end
 
-#### 3.9 Connect frontend with backend using Cross-Origin Resource Sharing (CORS) 
-
+#### 3.9 Connect frontend with backend using Cross-Origin Resource Sharing (CORS)
 
 In your backend repository, install cors with the command : -
 
-> `npm install cors` 
+> `npm install cors`
 
- * add this line of code in index.js
+- add this line of code in index.js
 
 const cors = require('cors')
 app.use(cors())
@@ -125,8 +124,6 @@ The front end should work fetching data from the backend.
 
 Add node_modules in '.gitignore'
 (before deploying)
-
-
 
 On root directory
 
@@ -202,7 +199,9 @@ const url = `mongodb+srv://fullstack_amutha:${password}@cluster0.eqxje.mongodb.n
 
 Mongoose does not offer the build-in validator so double data entry and this can be done by installing mongoose-unique-validator plugin.
 
-> npm install --save mongoose-unique-validator
+```
+npm install --save mongoose-unique-validator
+```
 
 Documentation link for this installation can be found in :
 `https://github.com/blakehaswell/mongoose-unique-validator#readme`
@@ -214,7 +213,8 @@ Documentation link for this installation can be found in :
 This is a new "full stack" version. Create a new production build of the frontend and copy it to the backend repository. Make sure the application works on local address `http://localhost:30001/`
 
 - Push the new changes to Heroku
-  > `git push heroku main`
+
+  `git push heroku main`
 
 * Make sure to verify that everything works as it should.
 
@@ -285,4 +285,3 @@ Backend
 Heroku app
 
 ![Screen Shot 2021-11-02 at 4 42 38 pm](https://user-images.githubusercontent.com/67087939/139792628-e60a0281-7cb2-4680-bc47-94f7e78b2660.png)
-
