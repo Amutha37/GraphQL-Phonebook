@@ -142,6 +142,8 @@ const resolvers = {
       const person = new Person({ ...args })
       const currentUser = context.currentUser
 
+      console.log('currentUser addperson', currentUser, 'args', args)
+
       if (!currentUser) {
         throw new GraphQLError('not authenticated', {
           extensions: {
@@ -169,6 +171,7 @@ const resolvers = {
     editNumber: async (root, args) => {
       const person = await Person.findOne({ name: args.name })
       person.phone = args.phone
+
       try {
         await person.save()
       } catch (error) {
@@ -182,6 +185,7 @@ const resolvers = {
       }
       return person
     },
+
     createUser: async (root, args) => {
       const user = new User({ username: args.username })
 
@@ -198,8 +202,9 @@ const resolvers = {
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username })
 
+      console.log('user login', user)
       if (!user || args.password !== 'secret') {
-        throw new GraphQLError('wrong credentials', {
+        throw new GraphQLError('wrong credentials password', {
           extensions: { code: 'BAD_USER_INPUT' },
         })
       }
@@ -249,7 +254,7 @@ startStandaloneServer(server, {
       const currentUser = await User.findById(decodedToken.id).populate(
         'friends'
       )
-      console.log('currentUser', currentUser)
+      console.log('currentUser server', currentUser)
       return { currentUser }
     }
   },
