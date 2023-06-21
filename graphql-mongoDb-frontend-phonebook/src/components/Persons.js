@@ -31,7 +31,7 @@ const Persons = ({ persons }) => {
       />
     )
   }
-  console.log('persons', persons)
+
   return (
     <div>
       <h2>Persons</h2>

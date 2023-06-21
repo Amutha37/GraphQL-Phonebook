@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../queries'
 
 const LoginForm = ({ setError, setToken }) => {
   const [username, setUsername] = useState('mluukkai')
-  const [password, setPassword] = useState('secret')
+  const [password, setPassword] = useState('')
 
   const [login, result] = useMutation(LOGIN, {
     onError: (error) => {
@@ -39,12 +39,12 @@ const LoginForm = ({ setError, setToken }) => {
         <div>
           password{' '}
           <input
-            type='password'
+            type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type='submit'>login</button>
+        <button type="submit">login</button>
       </form>
     </div>
   )

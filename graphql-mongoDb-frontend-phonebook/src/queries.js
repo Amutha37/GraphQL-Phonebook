@@ -1,6 +1,17 @@
 import { gql } from '@apollo/client'
 
-// query all persons
+const PERSON_DETAILS = gql`
+  fragment PersonDetails on Person {
+    id
+    name
+    phone
+    address {
+      street
+      city
+    }
+  }
+`
+
 export const ALL_PERSONS = gql`
   query {
     allPersons {
@@ -10,35 +21,7 @@ export const ALL_PERSONS = gql`
     }
   }
 `
-// Define query for fine a person
-export const FIND_PERSON = gql`
-  query findPersonByName($nameToSearch: String!) {
-    findPerson(name: $nameToSearch) {
-      name
-      phone
-      id
-      address {
-        street
-        city
-      }
-    }
-  }
-`
-// Define a mutation for editing phone number
-export const EDIT_NUMBER = gql`
-  mutation editNumber($name: String!, $phone: String!) {
-    editNumber(name: $name, phone: $phone) {
-      name
-      phone
-      address {
-        street
-        city
-      }
-      id
-    }
-  }
-`
-// Define a mutation for CREATE PERSON
+
 export const CREATE_PERSON = gql`
   mutation createPerson(
     $name: String!
@@ -57,7 +40,29 @@ export const CREATE_PERSON = gql`
     }
   }
 `
-// Define a mutation for logging in:
+
+export const FIND_PERSON = gql`
+  query findPersonByName($nameToSearch: String!) {
+    findPerson(name: $nameToSearch) {
+      ...PersonDetails
+    }
+  }
+  ${PERSON_DETAILS}
+`
+
+export const EDIT_NUMBER = gql`
+  mutation editNumber($name: String!, $phone: String!) {
+    editNumber(name: $name, phone: $phone) {
+      name
+      phone
+      address {
+        street
+        city
+      }
+      id
+    }
+  }
+`
 
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
@@ -65,4 +70,14 @@ export const LOGIN = gql`
       value
     }
   }
+`
+
+export const PERSON_ADDED = gql`
+  subscription {
+    personAdded {
+      ...PersonDetails
+    }
+  }
+
+  ${PERSON_DETAILS}
 `

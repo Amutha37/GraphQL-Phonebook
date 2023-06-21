@@ -9,12 +9,6 @@ const PhoneForm = ({ setError }) => {
 
   const [changeNumber, result] = useMutation(EDIT_NUMBER)
 
-  useEffect(() => {
-    if (result.data && result.data.editNumber === null) {
-      setError('person not found')
-    }
-  }, [result.data]) // eslint-disable-line
-
   const submit = async (event) => {
     event.preventDefault()
 
@@ -23,6 +17,12 @@ const PhoneForm = ({ setError }) => {
     setName('')
     setPhone('')
   }
+
+  useEffect(() => {
+    if (result.data && result.data.editNumber === null) {
+      setError('person not found')
+    }
+  }, [result.data]) // eslint-disable-line
 
   return (
     <div>
